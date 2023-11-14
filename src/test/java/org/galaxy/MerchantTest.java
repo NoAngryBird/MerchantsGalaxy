@@ -21,4 +21,17 @@ public class MerchantTest{
         assertTrue( true );
     }
 
+    @Test
+    public void testRomanToNumeric(){
+        Merchant merchant = new Merchant();
+        int result = merchant.convertToNumeral("MCMXLIV");
+        TestCase.assertEquals(1944, result);
+
+        result = merchant.convertToNumeral("MMVI");
+        TestCase.assertEquals(2006, result);
+
+        result = merchant.convertToNumeral("MCMIII");
+        TestCase.assertEquals(1903, result);
+    }
+
 }
