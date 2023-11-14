@@ -17,8 +17,4 @@ public class Merchant {
         romanToNumeralMap.put("M", 1000);
     }
 
-    boolean parseInput(String input) {
-        String[] words = input.split(" ");
-
-    }
 }
