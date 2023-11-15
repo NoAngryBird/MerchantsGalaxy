@@ -41,4 +41,15 @@ public class Merchant {
         }
         return roman;
     }
+
+    public String parseLine(String line) {
+        String[] words = line.split(" ");
+
+        if ("is".equals(words[1])) {
+            mapGalacticToRoman(words[0], words[2]);
+            return String.format("%s is mapped to %s (%d)", words[0], words[2], romanToNumeralMap.get(words[2]));
+        } else {
+            return "I have no idea what you are talking about";
+        }
+    }
 }
