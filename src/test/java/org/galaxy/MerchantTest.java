@@ -83,6 +83,11 @@ public class MerchantTest{
         result = merchant.parseLine("how much is pish tegj glob glob ?");
         TestCase.assertEquals("pish tegj glob glob is 42", result);
 
+        merchant.mapGalacticToRoman("prok", "V");
+        result = merchant.parseLine("how many Credits is glob prok Silver ?");
+        TestCase.assertEquals("glob prok Silver is 68 Credits", result);
+
+
     }
 
 }

@@ -72,7 +72,17 @@ public class Merchant {
             }
 
             return String.join(" ", galactic) + " is " + value;
-        } else {
+        }
+        else if(line.startsWith("how many Credits is")){
+            String[] galactic = new String[words.length-6];
+            System.arraycopy(words, 4, galactic, 0, words.length-6);
+            int value = convertToNumeral(galactic2Roman(galactic));
+
+            double credit = value * metalToCreditMap.get(words[words.length-2]);
+
+            return String.join(" ", galactic) + " " + words[words.length-2]+ " is " + (int)credit + " Credits";
+        }
+        else {
             return "I have no idea what you are talking about";
         }
     }
