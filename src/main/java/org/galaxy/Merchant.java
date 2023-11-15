@@ -21,6 +21,9 @@ public class Merchant {
         int result = 0;
         int lastValue = 0;
         for (int i = roman.length - 1; i >= 0; i--) {
+            if(!romanToNumeralMap.containsKey(String.valueOf(roman[i]))){
+                return -1;
+            }
             int currentValue = romanToNumeralMap.get(String.valueOf(roman[i]));
             if (currentValue < lastValue) {
                 result -= currentValue;
@@ -50,14 +53,25 @@ public class Merchant {
         if ("is".equals(words[1])) {
             mapGalacticToRoman(words[0], words[2]);
             return String.format("%s is mapped to %s (%d)", words[0], words[2], romanToNumeralMap.get(words[2]));
-        } else if("Credits".equals(words[words.length-1])){
-            String[] galactic = new String[words.length-4];
-            System.arraycopy(words, 0, galactic, 0, words.length-4);
+        } else if("Credits".equals(words[words.length-1])) {
+            String[] galactic = new String[words.length - 4];
+            System.arraycopy(words, 0, galactic, 0, words.length - 4);
             int value = convertToNumeral(galactic2Roman(galactic));
-            String metal = words[words.length-4];
+            String metal = words[words.length - 4];
             int credit = Integer.parseInt(words[words.length - 2]);
-            metalToCreditMap.put(metal, (double) credit/value);
-            return metal + " is " + metalToCreditMap.get(metal) + " credits";
+            metalToCreditMap.put(metal, (double) credit / value);
+
+            return String.format("%s is %d credits", metal, metalToCreditMap.get(metal).intValue());
+        }
+        else if(line.startsWith("how much is")){
+            String[] galactic = new String[words.length-4];
+            System.arraycopy(words, 3, galactic, 0, words.length-4);
+            int value = convertToNumeral(galactic2Roman(galactic));
+            if(value < 0 ){
+                return "I have no idea what you are talking about";
+            }
+
+            return String.join(" ", galactic) + " is " + value;
         } else {
             return "I have no idea what you are talking about";
         }

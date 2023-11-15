@@ -70,10 +70,19 @@ public class MerchantTest{
         TestCase.assertEquals("glob is mapped to I (1)", result);
 
         result = merchant.parseLine("glob glob Silver is 34 Credits");
-        TestCase.assertEquals("Silver is 17.0 credits", result);
+        TestCase.assertEquals("Silver is 17 credits", result);
 
         result = merchant.parseLine("how much wood could a woodchuck chuck if a woodchuck could chuck wood?");
         TestCase.assertEquals("I have no idea what you are talking about", result);
+
+        result = merchant.parseLine("how much is pish tegj glob glob ?");
+        TestCase.assertEquals("I have no idea what you are talking about", result);
+
+        merchant.mapGalacticToRoman("pish", "X");
+        merchant.mapGalacticToRoman("tegj", "L");
+        result = merchant.parseLine("how much is pish tegj glob glob ?");
+        TestCase.assertEquals("pish tegj glob glob is 42", result);
+
     }
 
 }
