@@ -14,6 +14,8 @@ public class Merchant {
             "D", 500,
             "M", 1000);
     private final Map<String, String> galacticToRomanMap = new HashMap<>();
+    private final Map<String, Double> metalToCreditMap = new HashMap<>();
+
 
     public int convertToNumeral(String[] roman) {
         int result = 0;
@@ -48,6 +50,14 @@ public class Merchant {
         if ("is".equals(words[1])) {
             mapGalacticToRoman(words[0], words[2]);
             return String.format("%s is mapped to %s (%d)", words[0], words[2], romanToNumeralMap.get(words[2]));
+        } else if("Credits".equals(words[words.length-1])){
+            String[] galactic = new String[words.length-4];
+            System.arraycopy(words, 0, galactic, 0, words.length-4);
+            int value = convertToNumeral(galactic2Roman(galactic));
+            String metal = words[words.length-4];
+            int credit = Integer.parseInt(words[words.length - 2]);
+            metalToCreditMap.put(metal, (double) credit/value);
+            return metal + " is " + metalToCreditMap.get(metal) + " credits";
         } else {
             return "I have no idea what you are talking about";
         }

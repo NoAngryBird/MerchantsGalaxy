@@ -69,6 +69,9 @@ public class MerchantTest{
         String result = merchant.parseLine("glob is I");
         TestCase.assertEquals("glob is mapped to I (1)", result);
 
+        result = merchant.parseLine("glob glob Silver is 34 Credits");
+        TestCase.assertEquals("Silver is 17.0 credits", result);
+
         result = merchant.parseLine("how much wood could a woodchuck chuck if a woodchuck could chuck wood?");
         TestCase.assertEquals("I have no idea what you are talking about", result);
     }
