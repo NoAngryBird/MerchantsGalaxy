@@ -78,6 +78,9 @@ public class Merchant {
             System.arraycopy(words, 4, galactic, 0, words.length-6);
             int value = convertToNumeral(galactic2Roman(galactic));
 
+            if(!metalToCreditMap.containsKey(words[words.length - 2])){
+                return "I have no idea what you are talking about";
+            }
             double credit = value * metalToCreditMap.get(words[words.length-2]);
 
             return String.join(" ", galactic) + " " + words[words.length-2]+ " is " + (int)credit + " Credits";

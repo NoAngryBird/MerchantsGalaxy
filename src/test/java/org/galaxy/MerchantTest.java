@@ -87,6 +87,11 @@ public class MerchantTest{
         result = merchant.parseLine("how many Credits is glob prok Silver ?");
         TestCase.assertEquals("glob prok Silver is 68 Credits", result);
 
+        result = merchant.parseLine("how many Credits is glob prok Gold ?");
+        TestCase.assertEquals("I have no idea what you are talking about", result);
+
+        result = merchant.parseLine("how many Credits is woodchuck Gold ?");
+        TestCase.assertEquals("I have no idea what you are talking about", result);
 
     }
 
